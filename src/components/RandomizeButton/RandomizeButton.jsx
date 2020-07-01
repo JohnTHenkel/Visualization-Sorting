@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import Button  from 'react-bootstrap/Button';
 import { updateArray } from '../../redux/actions.js';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
+import './RandomizeButton.css';
 
 class RandomizeButton extends Component {
 
@@ -14,7 +17,12 @@ class RandomizeButton extends Component {
     const { createArray } = this.props;
     return (
       <div>
-        <button onClick={() => createArray(25)}>Randomize Array</button>
+        <Button
+        variant="primary"
+        className="RandomizeButton"
+        onClick={() => createArray(25)}>
+          Randomize Array
+        </Button>
       </div>
     )
   }
@@ -30,7 +38,7 @@ const mapDispatchToProps = () => dispatch => ({
     const MIN = 8
     const MAX = 256
     const array = Array.from(Array(length)).map(
-      x => Math.random() * Math.floor(MAX - MIN) + MIN
+      x =>  Math.floor(Math.random() * (MAX - MIN)) + MIN
     )
     dispatch(updateArray(array));
   }
