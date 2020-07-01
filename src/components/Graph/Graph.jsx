@@ -39,11 +39,13 @@ class Graph extends Component {
     {
       return <div/>
     }
+    const scale = (height / 2.0) / Math.max(...array)
+
     return (
       <div className="Graph">
         {array.length ? array.map((value, index) => {
           const backgroundColor = "#ffffff";
-          const barHeight = height * value / 500
+          const barHeight = value * scale
           return <div key={index}
             className="Element"
             style={{ height: barHeight, width: width, backgroundColor: backgroundColor }}>
