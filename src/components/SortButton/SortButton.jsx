@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import { updateArray } from '../../redux/actions.js';
+import { updateArray, isRunning } from '../../redux/actions.js';
 import { connect } from 'react-redux';
 
 import './SortButton.css';
@@ -8,13 +8,13 @@ import './SortButton.css';
 class SortButton extends Component {
 
   render() {
-    const { sortArray, array } = this.props;
+    const { sortArray, array, isRunning } = this.props;
     return (
       <div>
         <Button
-          variant="primary"
+          variant={isRunning ? "secondary" : "primary"}
           className="SortButton"
-          onClick={() => sortArray(array)}>
+          onClick={isRunning ? () => {} : () => {sortArray(array)}}>
           Sort Array
             </Button>
       </div>
@@ -24,7 +24,8 @@ class SortButton extends Component {
 
 const mapStateToProps = state => {
   const array = state.updateArray.array
-  return { array }
+  const isRunning = state.isRunning.isRunning
+  return { array, isRunning }
 }
 
 function swap(array, i, j) {
@@ -39,6 +40,7 @@ function sleep(ms) {
 const mapDispatchToProps = () => dispatch => ({
   sortArray: (array) => {
     async function doSort() {
+      dispatch(isRunning(true))
       for (let i = 0; i < array.length; i++){
         for (let j = 0; j <array.length - i - 1; j++ )
         {
@@ -51,6 +53,7 @@ const mapDispatchToProps = () => dispatch => ({
           }
         }
       }
+    dispatch(isRunning(false))
     }
     doSort()
   }

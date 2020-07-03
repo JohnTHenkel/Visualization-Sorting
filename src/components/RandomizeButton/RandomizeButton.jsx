@@ -14,13 +14,13 @@ class RandomizeButton extends Component {
   }
 
   render() {
-    const { createArray } = this.props;
+    const { createArray, isRunning } = this.props;
     return (
       <div>
         <Button
-        variant="primary"
+        variant={isRunning ? "secondary" : "primary"}
         className="RandomizeButton"
-        onClick={() => createArray(25)}>
+        onClick={isRunning ? () => {} : () => {createArray(25)}}>
           Randomize Array
         </Button>
       </div>
@@ -30,7 +30,8 @@ class RandomizeButton extends Component {
 
 const mapStateToProps = state => {
   const array = state.updateArray.array
-  return { array }
+  const isRunning = state.isRunning.isRunning
+  return { array, isRunning }
 }
 
 const mapDispatchToProps = () => dispatch => ({
