@@ -11,12 +11,20 @@ class SortButton extends Component {
     const { sortArray, array, isRunning } = this.props;
     return (
       <div>
-        <Button
-          variant={isRunning ? "secondary" : "primary"}
-          className="SortButton"
-          onClick={isRunning ? () => {} : () => {sortArray(array)}}>
-          Sort Array
-            </Button>
+        {isRunning ? 
+          <Button
+            variant="secondary"
+            className="SortButton"
+            disabled>
+            Sort Array
+          </Button> :
+          <Button
+            variant="primary"
+            className="SortButton"
+            onClick={() => {sortArray(array)}}>
+            Sort Array
+          </Button>
+        }
       </div>
     )
   }

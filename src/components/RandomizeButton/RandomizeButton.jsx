@@ -17,12 +17,20 @@ class RandomizeButton extends Component {
     const { createArray, isRunning } = this.props;
     return (
       <div>
-        <Button
-        variant={isRunning ? "secondary" : "primary"}
-        className="RandomizeButton"
-        onClick={isRunning ? () => {} : () => {createArray(25)}}>
-          Randomize Array
-        </Button>
+        {isRunning ? 
+          <Button
+            variant="secondary"
+            className="RandomizeButton"
+            disabled>
+            Randomize Array
+          </Button> :
+          <Button
+            variant="primary"
+            className="RandomizeButton"
+            onClick={() => {createArray(25)}}>
+            Randomize Array
+          </Button>
+        }
       </div>
     )
   }
