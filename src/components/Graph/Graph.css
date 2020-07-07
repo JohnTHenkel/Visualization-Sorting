@@ -4,8 +4,15 @@
   position: fixed;
   bottom: 0;
 }
-.Element {
+.normalElement {
   display: inline-block;
   margin-left: 5px;
   bottom: 0px;
+  background-color: #ffffff;
+}
+.currentElement {
+  display: inline-block;
+  margin-left: 5px;
+  bottom: 0px;
+  background-color: #0066ff;
 }

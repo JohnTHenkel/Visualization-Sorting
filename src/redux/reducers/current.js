@@ -1,17 +1,17 @@
-import { UPDATE_ARRAY } from "../actionTypes";
+import { SET_CURRENT } from "../actionTypes";
 
 const initialState = {
-  array: [],
+  currentComparison: []
 };
 
 export default function (state = initialState, action) {
 
   switch (action.type) {
-    case UPDATE_ARRAY:
-      const { array } = action.payload;
+    case SET_CURRENT:
+      const { currentComparison } = action.payload;
       return {
         ...state,
-        array: array
+        currentComparison: currentComparison
       };
     default:
       return state;

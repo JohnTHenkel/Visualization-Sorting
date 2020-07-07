@@ -32,7 +32,7 @@ class Graph extends Component {
   }
 
   render() {
-    const { array } = this.props;
+    const { array, currentComparison } = this.props;
     const { height, width } = this.state;
 
     if (array == null)
@@ -44,11 +44,10 @@ class Graph extends Component {
     return (
       <div className="Graph">
         {array.length ? array.map((value, index) => {
-          const backgroundColor = "#ffffff";
           const barHeight = value * scale
           return <div key={index}
-            className="Element"
-            style={{ height: barHeight, width: width, backgroundColor: backgroundColor }}>
+            className={currentComparison.includes(index) ? "currentElement" : "normalElement"}
+            style={{ height: barHeight, width: width}}>
           </div>
         }) : null
         }
@@ -59,7 +58,8 @@ class Graph extends Component {
 
 const mapStateToProps = state => {
   const array = state.updateArray.array
-  return {array}
+  const currentComparison = state.currentComparison.currentComparison
+  return {array, currentComparison }
 }
  
 export default connect(mapStateToProps)(Graph);

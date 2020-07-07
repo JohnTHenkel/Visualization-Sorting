@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import { updateArray, isRunning } from '../../redux/actions.js';
+import { updateArray, isRunning, currentComparison } from '../../redux/actions.js';
 import { connect } from 'react-redux';
 
 import './SortButton.css';
@@ -57,10 +57,12 @@ const mapDispatchToProps = () => dispatch => ({
             swap(array,j, j+1)
             const newArray=Array.from(array);
             dispatch(updateArray(newArray));
-            await sleep(30);
           }
+          dispatch(currentComparison([j, j+1]))
+          await sleep(30);
         }
       }
+    dispatch(currentComparison([]))
     dispatch(isRunning(false))
     }
     doSort()
