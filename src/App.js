@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph  from './components/Graph/Graph.jsx'
 import RandomizeButton from './components/RandomizeButton/RandomizeButton.jsx'
 import SortButton from './components/SortButton/SortButton.jsx'
+import SpeedSlider from './components/SpeedSlider/SpeedSlider.jsx'
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,9 @@ class App extends Component {
         <div className="btn-group">
           <RandomizeButton/>
           <SortButton/>
+        </div>
+        <div className="btn-group">
+          <SpeedSlider/>
         </div>
         <Graph/>
       </div>
