@@ -8,7 +8,7 @@ import './SortButton.css';
 class SortButton extends Component {
 
   render() {
-    const { sortArray, array, isRunning } = this.props;
+    const { sortArray, array, isRunning, speed } = this.props;
     return (
       <div>
         {isRunning ? 
@@ -21,7 +21,7 @@ class SortButton extends Component {
           <Button
             variant="primary"
             className="SortButton"
-            onClick={() => {sortArray(array)}}>
+            onClick={() => {sortArray(array, speed)}}>
             Sort Array
           </Button>
         }
@@ -31,9 +31,10 @@ class SortButton extends Component {
 }
 
 const mapStateToProps = state => {
-  const array = state.updateArray.array
-  const isRunning = state.isRunning.isRunning
-  return { array, isRunning }
+  const array = state.updateArray.array;
+  const isRunning = state.isRunning.isRunning;
+  const speed = state.speed.speed;
+  return { array, isRunning, speed }
 }
 
 function swap(array, i, j) {
@@ -46,7 +47,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 const mapDispatchToProps = () => dispatch => ({
-  sortArray: (array) => {
+  sortArray: (array, speed) => {
     async function doSort() {
       dispatch(isRunning(true))
       for (let i = 0; i < array.length; i++){
@@ -59,7 +60,7 @@ const mapDispatchToProps = () => dispatch => ({
             dispatch(updateArray(newArray));
           }
           dispatch(currentComparison([j, j+1]))
-          await sleep(30);
+          await sleep(speed);
         }
       }
     dispatch(currentComparison([]))
