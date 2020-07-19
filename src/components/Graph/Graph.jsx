@@ -6,11 +6,10 @@ import './Graph.css';
 class Graph extends Component {
   constructor(props) {
     super(props);
-    const defaultLength = 25
     this.state = {
       array: props.array,
       height: window.innerHeight,
-      width:  window.innerWidth / (defaultLength * 2),
+      width:  window.innerWidth
     }
     this.updateDimensions = this.updateDimensions.bind(this)
   }
@@ -23,7 +22,7 @@ class Graph extends Component {
   updateDimensions() {
     this.setState({
       height: window.innerHeight, 
-      width: window.innerWidth /((this.props.array.length === 0 ? 1: this.props.array.length)  * 2)
+      width: window.innerWidth
     });
   }
 
@@ -45,9 +44,11 @@ class Graph extends Component {
       <div className="Graph">
         {array.length ? array.map((value, index) => {
           const barHeight = value * scale
+          const margin = 5
+          const barWidth = width / (array.length * 2) - margin
           return <div key={index}
             className={currentComparison.includes(index) ? "currentElement" : "normalElement"}
-            style={{ height: barHeight, width: width}}>
+            style={{ height: barHeight, width: barWidth, marginLeft:margin}}>
           </div>
         }) : null
         }
