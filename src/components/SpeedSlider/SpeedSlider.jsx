@@ -25,6 +25,7 @@ class SpeedSlider extends Component {
 
   render() {
     const { min, max, value} = this.state;
+    const { isRunning } = this.props;
     return (
     <div className="slidercontainer">
       <div>
@@ -32,6 +33,7 @@ class SpeedSlider extends Component {
       </div>
       <div>
         <input
+        disabled={isRunning}
         type="range" 
         min={min}
         max={max}
@@ -44,7 +46,8 @@ class SpeedSlider extends Component {
   }
   const mapStateToProps = state => {
     const speed = state.speed.speed
-    return { speed }
+    const isRunning = state.isRunning.isRunning;
+    return { isRunning, speed }
   }
 
   const mapDispatchToProps = () => dispatch => ({
