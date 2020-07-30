@@ -1,4 +1,4 @@
-# Visualization - Sorting
+# Visualization - Sorting [![Build Status](https://travis-ci.com/JohnTHenkel/Visualization-Sorting.svg?branch=master)](https://travis-ci.com/JohnTHenkel/Visualization-Sorting)
 A small repository for seeing sorting algorithms 
 in action. Click the randomize button to generate a new random array and click the sort button to watch the sorting algorithm do its magic!
 
