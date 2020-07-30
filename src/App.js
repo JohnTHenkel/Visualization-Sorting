@@ -6,6 +6,7 @@ import SpeedSlider from './components/SpeedSlider/SpeedSlider.jsx'
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SizeSlider from './components/SizeSlider/SizeSlider.jsx';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
         </div>
         <div className="btn-group">
           <SpeedSlider/>
+          <SizeSlider/>
         </div>
         <Graph/>
       </div>
