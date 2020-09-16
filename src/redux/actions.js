@@ -1,4 +1,4 @@
-import { UPDATE_ARRAY, SET_RUNNING, SET_CURRENT, SET_SPEED } from './actionTypes';
+import { UPDATE_ARRAY, SET_RUNNING, SET_CURRENT, SET_SPEED, SET_SIZE } from './actionTypes';
 
 export const updateArray = array => ({
   type: UPDATE_ARRAY,
@@ -18,4 +18,9 @@ export const currentComparison = currentComparison => ({
 export const speed = speed => ({
   type: SET_SPEED,
   payload: { speed }
+})
+
+export const size = size => ({
+  type: SET_SIZE,
+  payload: { size }
 })

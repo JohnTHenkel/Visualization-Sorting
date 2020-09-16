@@ -8,13 +8,13 @@ import './RandomizeButton.css';
 class RandomizeButton extends Component {
 
   componentDidMount() {
-    const { createArray } = this.props;
-    createArray(25);
+    const { createArray, size } = this.props;
+    createArray(size);
     window.addEventListener("resize", this.updateDimensions);
   }
 
   render() {
-    const { createArray, isRunning } = this.props;
+    const { createArray, isRunning, size } = this.props;
     return (
       <div>
         {isRunning ? 
@@ -27,7 +27,7 @@ class RandomizeButton extends Component {
           <Button
             variant="primary"
             className="RandomizeButton"
-            onClick={() => {createArray(25)}}>
+            onClick={() => {createArray(size)}}>
             Randomize Array
           </Button>
         }
@@ -39,16 +39,18 @@ class RandomizeButton extends Component {
 const mapStateToProps = state => {
   const array = state.updateArray.array
   const isRunning = state.isRunning.isRunning
-  return { array, isRunning }
+  const size = state.size.size
+  return { array, isRunning, size }
 }
 
 const mapDispatchToProps = () => dispatch => ({
   createArray: (length) => {
     const MIN = 8
     const MAX = 256
-    const array = Array.from(Array(length)).map(
-      x =>  Math.floor(Math.random() * (MAX - MIN)) + MIN
-    )
+    const array = Array.from(Array(length))
+    for (var i = 0; i<length; i++) {
+      array[i]=Math.floor(Math.random() * (MAX - MIN)) + MIN;
+    }
     dispatch(updateArray(array));
   }
 });

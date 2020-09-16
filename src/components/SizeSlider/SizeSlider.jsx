@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { size, updateArray  } from '../../redux/actions.js';
 import './SizeSlider.css';
 
 class SizeSlider extends Component {
@@ -7,12 +8,15 @@ class SizeSlider extends Component {
     super(props);
     this.state = {
       min: 5,
-      max: 250,
+      max: 100,
       value: 25,
     }
   }
 
   handleChange(event) {
+    const { setSize, createArray } = this.props
+    setSize(event.target.value)
+    createArray(event.target.value)
     this.setState({value: event.target.value});
   }
 
@@ -43,6 +47,18 @@ class SizeSlider extends Component {
   }
 
   const mapDispatchToProps = () => dispatch => ({
+    setSize: (newSize) => {
+      dispatch(size(newSize))
+    },
+    createArray: (length) => {
+      const MIN = 8
+      const MAX = 256
+      const array = Array.from(Array(length))
+      for (var i = 0; i<length; i++) {
+        array[i]=Math.floor(Math.random() * (MAX - MIN)) + MIN;
+      }
+      dispatch(updateArray(array));
+    }
   });
 
   export default connect(mapStateToProps, mapDispatchToProps)(SizeSlider);
